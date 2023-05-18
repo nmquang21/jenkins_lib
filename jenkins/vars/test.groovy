@@ -1,29 +1,32 @@
-pipeline {
-    agent {
-        node {
-            label 'ssh-agent-node-01'
-        }
-    }
-    
-    stages {
-       
-        
-        stage('Build') {
-            steps {
-                sh 'docker --version'
-                sh 'docker ps'
+def call{
+
+    pipeline {
+        agent {
+            node {
+                label 'ssh-agent-node-01'
             }
         }
-        
-        stage('Test') {
-            steps {
-                echo 'mvn test'
+
+        stages {
+
+
+            stage('Build') {
+                steps {
+                    sh 'docker --version'
+                    sh 'docker ps'
+                }
             }
-        }
-        
-        stage('Deploy') {
-            steps {
-                echo 'mvn deploy'
+
+            stage('Test') {
+                steps {
+                    echo 'mvn test'
+                }
+            }
+
+            stage('Deploy') {
+                steps {
+                    echo 'mvn deploy'
+                }
             }
         }
     }
