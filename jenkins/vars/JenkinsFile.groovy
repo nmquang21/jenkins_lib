@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'docker --version'
                 sh 'docker ps'
-                sshagent(['cfc80002-d34b-4b12-b640-fe12232c79f1']) {
+                sshagent(['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
                     // some block
                     sh 'ssh nmquang21@35.234.5.238 "touch /home/nmquang21/file_demo_ssh.txt"'
                 }
