@@ -25,6 +25,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'mvn deploy'
+                echo 'mvn deployyy'
             }
         }
     }
