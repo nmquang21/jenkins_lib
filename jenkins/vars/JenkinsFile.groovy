@@ -1,11 +1,11 @@
 def call(){
 pipeline {
-    agent {
-        node {
-            label 'ssh-agent-node-01'
-        }
-    }
-    
+   // agent {
+   //     node {
+   //         label 'ssh-agent-node-01'
+   //     }
+   // }
+    agent any
     stages {
        
         
