@@ -30,7 +30,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      image: nmquang21/jenkins:V1
     ports:
       - '5000:80'
     restart: unless-stopped" > docker-compose.yml"'
