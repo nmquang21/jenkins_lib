@@ -25,6 +25,7 @@ pipeline {
                     // some bloc kmkdir 
                     sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/jenkins_test:V1'
                     sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 mkdir booking_hihi'
+                    sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 pwd'
                 }
             }
         }
