@@ -1,5 +1,12 @@
 def call(){
   echo 'CALL BUILD IMAGES'
-  sh 'npm install'
-  sh 'npm run build'
+  def commands = [
+    'npm install',
+    'npm run build'
+  ]
+  commands.each{ i ->
+    runCmd(i)
+  }
+  //sh 'npm install'
+  //sh 'npm run build'
 }
