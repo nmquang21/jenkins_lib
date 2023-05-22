@@ -1,4 +1,5 @@
 def call(String commands){
+    echo 'RUN COMMANDS'
     def returnCode = 0
     try{
         if(isUnix()){
