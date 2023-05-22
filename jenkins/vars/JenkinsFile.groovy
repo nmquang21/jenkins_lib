@@ -21,10 +21,11 @@ def call(){
                 }
             }
             stage('Build Image') {
-                steps {           
-                    sh 'npm install'
-                    sh 'npm run build'               
-                }
+                //steps {           
+                 //   sh 'npm install'
+                //    sh 'npm run build'               
+               // }
+                BuildImage()
             }
             stage('Push Image Docker hub') {
                 steps {
