@@ -25,7 +25,10 @@ def call(){
                  //   sh 'npm install'
                 //    sh 'npm run build'               
                // }
-                BuildImage()
+                script{
+                    BuildImage()
+                }
+                
             }
             stage('Push Image Docker hub') {
                 steps {
