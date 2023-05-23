@@ -33,9 +33,9 @@ def call(){
             stage('Push Image Docker hub') {
                 steps {
                     withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
-                        sh 'docker build -t nmquang21/RoomBookingUniversity:${VERSION} .'
-                        sh 'docker push nmquang21/RoomBookingUniversity:${VERSION}'
-                        sh 'docker rmi nmquang21/RoomBookingUniversity:${VERSION}'
+                        sh 'docker build -t nmquang21/room_booking_university:${VERSION} .'
+                        sh 'docker push nmquang21/room_booking_university:${VERSION}'
+                        sh 'docker rmi nmquang21/room_booking_university:${VERSION}'
                     }
                 }
             }
@@ -45,9 +45,9 @@ def call(){
                     sh 'docker ps'
                     sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
                         // some bloc kmkdir 
-                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/RoomBookingUniversity:${VERSION}'
+                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university:${VERSION}'
                         sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversity --force'
-                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 8880:80 nmquang21/RoomBookingUniversity:${VERSION}'
+                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 8880:80 nmquang21/room_booking_university:${VERSION}'
                     }
                 }
             }
