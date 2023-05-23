@@ -37,7 +37,7 @@ def call(){
                         // some bloc kmkdir 
                         sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university:${VERSION}'
                         sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversity --force'
-                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 8880:80 nmquang21/room_booking_university:${VERSION}'
+                        sh 'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 8881:80 nmquang21/room_booking_university:${VERSION}'
                     }
                 }
             }
