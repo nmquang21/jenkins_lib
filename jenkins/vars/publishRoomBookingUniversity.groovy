@@ -20,6 +20,15 @@ def call(){
                     git credentialsId: '1fd902f5-1ee3-4b89-b907-834346b62625', url: 'https://github.com/nmquang21/RoomBookingUniversityUI.git'
                 }
             }
+            stage('Build Image') {
+                //steps {           
+                 //   sh 'npm install'
+                //    sh 'npm run build'               
+               // }
+                steps{
+                    BuildImage()
+                }  
+            }
             stage('Push Image Docker hub') {
                 steps {
                     withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
