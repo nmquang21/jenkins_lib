@@ -11,7 +11,7 @@ def call(){
             string(name: 'VERSION', defaultValue: 'latest', description: 'Phien ban build?')
             //choice(name: 'APP_BUILD', choices: ['Booking_UI', 'Booking_API'], description: 'Build app nào?')
             //multiSelect(name: 'APP_BUILD', choices: ['Booking_UI', 'Booking_API'], description: 'APP_BUILD')
-            string(name: 'APP_BUILD', defaultValue: 'Booking_UI,Booking_API', description: 'Build app nào?', allowMultiple: true)
+            //string(name: 'APP_BUILD', defaultValue: 'Booking_UI,Booking_API', description: 'Build app nào?', allowMultiple: true)
         }
         environment {
             // Định nghĩa global
