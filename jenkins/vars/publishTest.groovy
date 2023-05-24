@@ -7,7 +7,7 @@ def call(){
         stage('Clone') {
             echo "Branch name: ${BRANCH_NAME}"
            stage('Parallel Stage') {
-              cho "Parallel Stage"
+              echo "Parallel Stage"
           }
         }
         stage('Build') {
