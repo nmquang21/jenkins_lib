@@ -5,7 +5,7 @@ def call(){
     }
     node('ssh-agent-node-01') {
         stage('Clone') {
-            echo 'CLone'
+            echo BRANCH_NAME 
         }
         stage('Build') {
             echo 'Build'
