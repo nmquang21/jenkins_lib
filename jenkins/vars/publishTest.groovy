@@ -1,9 +1,10 @@
 def call(){
-    environment {
-        // Định nghĩa global
-        BRANCH_NAME = 'master'
-    }
+    
     node('ssh-agent-node-01') {
+        environment {
+            // Định nghĩa global
+            BRANCH_NAME = 'master'
+        }
         stage('Clone') {
             echo env.BRANCH_NAME 
         }
