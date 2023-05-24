@@ -1,5 +1,5 @@
 def call(){
-    node {
+    node('ssh-agent-node-01') {
         stage('Clone') {
             echo 'CLone'
         }
