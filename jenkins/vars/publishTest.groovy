@@ -1,22 +1,14 @@
 def call(){
    BRANCH_NAME = 'master'
    BUILD_VERSION = '1.0.0'
-   def tasks = [
-    { ->
-        // Tác vụ 1
-        echo "Task 1 executed"
-    },
-    { ->
-        // Tác vụ 2
-        echo "Task 2 executed"
-    }
-]
+
     node('ssh-agent-node-01') {
-        stage('Parallel Stage') {
-           parallel tasks
-       }
+        
         stage('Clone') {
             echo "Branch name: ${BRANCH_NAME}"
+           stage('Parallel Stage') {
+              cho "Parallel Stage"
+          }
         }
         stage('Build') {
             echo 'Build'
