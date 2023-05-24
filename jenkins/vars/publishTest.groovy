@@ -28,6 +28,20 @@ def call(){
                     echo 'Build Image'
                 } 
             }
+            if (env.BRANCH_NAME == 'master') {
+                stage('Build 01') {
+                    steps{
+                        echo 'Build 01'
+                    }
+                    
+                }
+            } else {
+                stage('Build 02') {
+                    steps{
+                        echo 'Build 02'
+                    }
+                }
+            }
             stage('Example') {
                 steps {
                     script {
