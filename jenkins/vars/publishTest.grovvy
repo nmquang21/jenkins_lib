@@ -1,12 +1,38 @@
-pipeline {
-    agent any
-    parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-    }
-    stages {
-        stage('Example') {
-            steps {
-                echo "Hello ${params.PERSON}" // chỗ này sẽ in ra console là "Hello anh Long" nếu ta truyền biến PERSON=anh Long vào
+def call(){
+    pipeline {
+        //agent any
+        agent{
+            node {
+                label 'ssh-agent-node-01'
+             }
+         }
+
+        parameters {
+            string(name: 'VERSION', defaultValue: 'latest', description: 'Phien ban build?')
+            choice(name: 'ENVIRONMENT', choices: ['UI', 'API'], description: 'Build app nào?')
+        }
+        environment {
+            // Định nghĩa global
+            BRANCH_NAME = 'masters'
+        }
+        stages {
+            stage('Clone code') {
+               echo 'Clone code'
+            }
+            stage('Build Image') {
+               echo 'Build Image'
+            }
+          
+            stage('Example') {
+                steps {
+                    script {
+                        if (env.BRANCH_NAME == 'master') {
+                            echo 'I only execute on the master branch'
+                        } else {
+                            echo 'I execute elsewhere'
+                        }
+                    }
+                }
             }
         }
     }
