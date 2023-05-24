@@ -17,12 +17,15 @@ def call(){
         }
         stages {
             stage('Clone code') {
-               echo 'Clone code'
+                steps{
+                    echo 'Clone code'
+                }               
             }
             stage('Build Image') {
-               echo 'Build Image'
+                steps{
+                    echo 'Build Image'
+                } 
             }
-          
             stage('Example') {
                 steps {
                     script {
