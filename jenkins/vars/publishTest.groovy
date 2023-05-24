@@ -17,5 +17,14 @@ def call(){
                 echo 'I execute elsewhere'
             }
         }
+        if (env.BRANCH_NAME == 'master') {
+            stage('Build 01') {
+                echo 'Build 01'
+            }
+        } else {
+            stage('Build 02') {
+                echo 'Build 02'
+            }
+        }
     }
 }
