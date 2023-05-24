@@ -1,9 +1,6 @@
 def call(){
-    def globalEnv = [:] // Định nghĩa một đối tượng map để chứa các biến môi trường toàn cục
-    environment {
-        // Định nghĩa global
-        globalEnv['BRANCH_NAME'] = 'master'
-    }
+   env.BRANCH_NAME = 'masters'
+   env.BUILD_VERSION = '1.0.0'
     node('ssh-agent-node-01') {
         
         stage('Clone') {
