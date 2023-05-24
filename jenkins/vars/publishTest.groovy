@@ -1,10 +1,10 @@
 def call(){
-   env.BRANCH_NAME = 'masters'
-   env.BUILD_VERSION = '1.0.0'
+   BRANCH_NAME = 'master'
+   BUILD_VERSION = '1.0.0'
     node('ssh-agent-node-01') {
         
         stage('Clone') {
-            echo "Branch name: ${env.BRANCH_NAME}"
+            echo "Branch name: ${BRANCH_NAME}"
         }
         stage('Build') {
             echo 'Build'
