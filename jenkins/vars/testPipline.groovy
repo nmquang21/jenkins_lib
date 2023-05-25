@@ -132,7 +132,7 @@ def call(){
                                             }
                                             stage('build image'){
                                                 dir(FRONTEND_WORKSPACE){
-                                                    rumCmd('docker build -t nmquang21/room_booking_university:${VERSION} .')
+                                                    runCmd('docker build -t nmquang21/room_booking_university:${VERSION} .')
                                             
                                                 }
                                             }
@@ -140,9 +140,9 @@ def call(){
                                                 dir(FRONTEND_WORKSPACE){
                                                     steps {
                                                         withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
-                                                            rumCmd('docker push nmquang21/room_booking_university:${VERSION}')
+                                                            runCmd('docker push nmquang21/room_booking_university:${VERSION}')
                                                         }
-                                                        rumCmd('docker rmi nmquang21/room_booking_university:${VERSION}')
+                                                        runCmd('docker rmi nmquang21/room_booking_university:${VERSION}')
                                                     }
                                                 }
                                             }
