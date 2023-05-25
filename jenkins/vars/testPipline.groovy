@@ -130,7 +130,7 @@ def call(){
                                                     }
                                                 }
                                             }
-                                            stage('build image'){
+                                            stage('build image frontend'){
                                                 dir(FRONTEND_WORKSPACE){
                                                     echo pwd()
                                                     echo VERSION
@@ -139,7 +139,7 @@ def call(){
                                             
                                                 }
                                             }
-                                            stage('push image to DockerHub') {
+                                            stage('push image frontend to DockerHub') {
                                                 dir(FRONTEND_WORKSPACE){
                                                     withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
                                                         runCmd('docker push nmquang21/room_booking_university:latest')
@@ -147,7 +147,7 @@ def call(){
                                                     runCmd('docker rmi nmquang21/room_booking_university:latest')
                                                 }
                                             }
-                                            stage('Build FRONTEND') {
+                                            stage('build frontend') {
                                                 dir(FRONTEND_WORKSPACE){
                                                     sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
                                                         def commands = [
@@ -161,7 +161,7 @@ def call(){
                                                     }
                                                 }
                                             }
-                                            stage('cleanup'){
+                                            stage('cleanup frontend'){
                                                 echo 'cleanup'
                                                 dir(FRONTEND_WORKSPACE){
                                                     if(isUnix()){
@@ -177,15 +177,15 @@ def call(){
                                 if(app == 'APP/BACKEND'){
                                    taskPublish[app] = {
                                         stage(app){
-                                            stage('build image'){
-                                                dir(FRONTEND_WORKSPACE){
+                                            stage('build image backend'){
+                                                dir(BACKEND_WORKSPACE){
                                                     echo pwd()
                                                     runCmd('docker build -t nmquang21/room_booking_university_api:latest .')
                                             
                                                 }
                                             }
-                                            stage('push image to DockerHub') {
-                                                dir(FRONTEND_WORKSPACE){
+                                            stage('push image backend to DockerHub') {
+                                                dir(BACKEND_WORKSPACE){
                                                     withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
                                                         runCmd('docker push nmquang21/room_booking_university_api:latest')
                                                     }
