@@ -33,19 +33,19 @@ def call(){
                 quoteValue: false,
                 saveJSONParameterToFile: false,
                 type: 'PT_CHECKBOX', 
-                description: 'Chon app build?', 
+                description: 'Chọn App muốn build?', 
             )
             string(
                 defaultValue: 'master',
                 name: 'FRONTEND_GIT_BRANCH',
                 trim: true,
-                description: 'Build Front End nhánh nào?',
+                description: 'Build FrontEnd nhánh nào?',
             )
             string(
                 defaultValue: 'master',
                 name: 'BACKEND_GIT_BRANCH',
                 trim: true,
-                description: 'Build Back End nhánh nào?',
+                description: 'Build BackEnd nhánh nào?',
             )
         }
         stages{
@@ -58,7 +58,6 @@ def call(){
                             selectedAppBuild.each{app ->
                                 if(app == 'APP/FRONTEND'){
                                     getSourceTasks[app] = {
-                                        echo pwd()
                                         dir(FRONTEND_WORKSPACE){
                                             script{
                                                 checkout(
@@ -114,7 +113,50 @@ def call(){
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
                             selectedAppBuild.each{app ->
                                 if(app == 'APP/FRONTEND'){
-                                    echo 'Puplish APP/FRONTEND'
+                                    taskPublish[app] = {
+                                        stage(app){
+                                            FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
+                                            DEFAULT_FRONTEND_SOLUTION_DIR = "${FRONTEND_WORKSPACE}/misa.mimosa.ui"
+                                            
+                                            stage('npm build'){
+                                                dir(FRONTEND_WORKSPACE){
+                                                    if(!existNpmPackgeGlobally('@vue/cli')){
+                                                        rumCmd('npm i -g @vue/cli')
+                                                    }
+                                                    def commands = [
+                                                        'node -v',
+                                                        'npm i',
+                                                        'npm run build'
+                                                    ]
+                                                    commands.each{i ->
+                                                        runCmd(i)
+                                                    }
+                                                }
+                                            }
+                                            stage('build image'){
+                                                echo 'build image'
+                                                // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
+                                                //     def commands = [
+                                                //             // cmd docker    
+                                                //     ]
+                                                //     commands.each{i ->
+                                                //         runCmd(i)
+                                                //     }
+                                                // }
+                                            }
+                                            // ...
+                                            stage('cleanup'){
+                                                echo 'cleanup'
+                                                // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
+                                                //     if(isUnix()){
+                                                //         sh 'rm -rf ./dist'
+                                                //     }else{
+                                                //         bat '''rd /s /q "./dist"'''
+                                                //     }
+                                                // }
+                                            }
+                                        }
+                                    }
                                 }
                                 if(app == 'APP/BACKEND'){
                                     echo 'Puplish APP/BACKEND'
