@@ -92,7 +92,6 @@ def call(){
                                 //         }
                                 //     }
                                 // }
-                                echo app
                             }
                         }
                         parallel getSourceTasks
