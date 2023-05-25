@@ -175,7 +175,43 @@ def call(){
                                     }
                                 }
                                 if(app == 'APP/BACKEND'){
-                                    echo 'Puplish APP/BACKEND'
+                                   taskPublish[app] = {
+                                        stage(app){
+                                            stage('build image'){
+                                                dir(FRONTEND_WORKSPACE){
+                                                    echo pwd()
+                                                    runCmd('docker build -t nmquang21/room_booking_university_api:latest .')
+                                            
+                                                }
+                                            }
+                                            stage('push image to DockerHub') {
+                                                dir(FRONTEND_WORKSPACE){
+                                                    ste
+                                                        withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
+                                                            runCmd('docker push nmquang21/room_booking_university_api:latest')
+                                                        }
+                                                        runCmd('docker rmi nmquang21/room_booking_university_api:latest')
+                                                    }
+                                                }
+                                            }
+                                            stage('build backend') {
+                                                dir(BACKEND_WORKSPACE){
+                                                    steps {
+                                                        sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
+                                                            def commands = [
+                                                                'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university_api:latest',
+                                                                'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversityAPI --force',
+                                                                'docker run -d --name RoomBookingUniversityAPI --network=roombookinguniversityapi_my_network_custom -p 8888:80 nmquang21/room_booking_university_api:latest'
+                                                            ]
+                                                            commands.each{i ->
+                                                                runCmd(i)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                             parallel taskPublish
