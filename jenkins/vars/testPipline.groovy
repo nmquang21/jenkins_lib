@@ -106,73 +106,72 @@ def call(){
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
                             selectedAppBuild.each{app ->
                                 taskPublish[app] = {
-                                    node('ssh-agent-node-01'){
-                                        def imageName = 'test'
-                                        stage(app){
-                                            FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
-                                            DEFAULT_FRONTEND_SOLUTION_DIR = "${FRONTEND_WORKSPACE}/misa.mimosa.ui"
-                                            stage('get source'){
-                                                echo 'get source'
-                                                // dir(FRONTEND_WORKSPACE){
-                                                //     script{
-                                                //         checkout(
-                                                //             [
-                                                //             $class: 'GitSCM',
-                                                //             branch: [[name: params.FRONTEND_GIT_BRANCH]], 
-                                                //             userRemoteConfigs:
-                                                //                 [
-                                                //                     [
-                                                //                         credentialsId: params.CREDENTIALS_ID,
-                                                //                         url: FRONTEND_GIT_URL
-                                                //                     ]
-                                                //                 ] 
-                                                //             ]
-                                                //         )
-                                                //     }
-                                                // }
-                                            }
-                                            stage('npm build'){
-                                                //nodejs('NODEJS14'){
-                                                    echo 'npm build'
-                                                    // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
-                                                    //     if(!existNpmPackgeGlobally('@vue/cli')){
-                                                    //         rumCmd('npm i -g @vue/cli')
-                                                    //     }
-                                                    //     def commands = [
-                                                    //         'node -v',
-                                                    //         'npm i',
-                                                    //         'npm run build'
-                                                    //     ]
-                                                    //     commands.each{i ->
-                                                    //         runCmd(i)
-                                                    //     }
-                                                    // }
-                                               // }
-                                            }
-                                            stage('build image'){
-                                                echo 'build image'
+                                    def imageName = 'test'
+                                    stage(app){
+                                        FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
+                                        DEFAULT_FRONTEND_SOLUTION_DIR = "${FRONTEND_WORKSPACE}/misa.mimosa.ui"
+                                        stage('get source'){
+                                            echo 'get source'
+                                            // dir(FRONTEND_WORKSPACE){
+                                            //     script{
+                                            //         checkout(
+                                            //             [
+                                            //             $class: 'GitSCM',
+                                            //             branch: [[name: params.FRONTEND_GIT_BRANCH]], 
+                                            //             userRemoteConfigs:
+                                            //                 [
+                                            //                     [
+                                            //                         credentialsId: params.CREDENTIALS_ID,
+                                            //                         url: FRONTEND_GIT_URL
+                                            //                     ]
+                                            //                 ] 
+                                            //             ]
+                                            //         )
+                                            //     }
+                                            // }
+                                        }
+                                        stage('npm build'){
+                                            //nodejs('NODEJS14'){
+                                                echo 'npm build'
                                                 // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
+                                                //     if(!existNpmPackgeGlobally('@vue/cli')){
+                                                //         rumCmd('npm i -g @vue/cli')
+                                                //     }
                                                 //     def commands = [
-                                                //             // cmd docker    
+                                                //         'node -v',
+                                                //         'npm i',
+                                                //         'npm run build'
                                                 //     ]
                                                 //     commands.each{i ->
                                                 //         runCmd(i)
                                                 //     }
                                                 // }
-                                            }
-                                            // ...
-                                            stage('cleanup'){
-                                                echo 'cleanup'
-                                                // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
-                                                //     if(isUnix()){
-                                                //         sh 'rm -rf ./dist'
-                                                //     }else{
-                                                //         bat '''rd /s /q "./dist"'''
-                                                //     }
-                                                // }
-                                            }
+                                            // }
+                                        }
+                                        stage('build image'){
+                                            echo 'build image'
+                                            // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
+                                            //     def commands = [
+                                            //             // cmd docker    
+                                            //     ]
+                                            //     commands.each{i ->
+                                            //         runCmd(i)
+                                            //     }
+                                            // }
+                                        }
+                                        // ...
+                                        stage('cleanup'){
+                                            echo 'cleanup'
+                                            // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
+                                            //     if(isUnix()){
+                                            //         sh 'rm -rf ./dist'
+                                            //     }else{
+                                            //         bat '''rd /s /q "./dist"'''
+                                            //     }
+                                            // }
                                         }
                                     }
+                                    
                                 }
                             }
                             parallel taskPublish
