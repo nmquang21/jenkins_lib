@@ -7,10 +7,6 @@ def call(){
     VERSION = 'latest'
     BACKEND_WORKSPACE = 'BACKEND'
     FRONTEND_WORKSPACE = 'FRONTEND'
-
-    DOTNET_BASEIMAGE = 'aspnet:6.0.9'
-    VUE_BASEIMAGE = 'nginx:1.23.1-alpine'
-
     PROJS = [:]
     PROJS['app/api'] = 'MISA.API'
     PROJS['app/ui'] = 'MISA.UI'
@@ -126,7 +122,7 @@ def call(){
                                                         'npm run build'
                                                     ]
                                                     commands.each{i ->
-                                                        //runCmd(i)
+                                                        runCmd(i)
                                                     }
                                                 }
                                             }
