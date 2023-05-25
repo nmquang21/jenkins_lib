@@ -9,7 +9,7 @@ def call(String commands){
     }
   }
   catch(ex){
-    eturnStdout = ''
+    returnStdout = ''
   }
-  return eturnStdout
+  return returnStdout
 }
