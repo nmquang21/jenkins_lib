@@ -86,7 +86,7 @@ def call(){
                                                 checkout(
                                                     [
                                                     $class: 'GitSCM',
-                                                    branch: name: params.BACKEND_GIT_BRANCH, 
+                                                    branch: params.BACKEND_GIT_BRANCH, 
                                                     userRemoteConfigs:
                                                         [
                                                             [
