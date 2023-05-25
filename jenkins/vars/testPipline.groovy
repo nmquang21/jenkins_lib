@@ -106,7 +106,7 @@ def call(){
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
                             selectedAppBuild.each{app ->
                                 taskPublish[app] = {
-                                    node('slave-node-01'){
+                                    node('ssh-agent-node-01'){
                                         def imageName = 'test'
                                         stage(app){
                                             FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
