@@ -20,7 +20,7 @@ def call(){
     pipeline{
         agent{
             node{
-                label 'slave-node-01'
+                label 'ssh-agent-node-01'
             }
         }
         //options{
