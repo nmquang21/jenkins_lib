@@ -115,9 +115,6 @@ def call(){
                                 if(app == 'APP/FRONTEND'){
                                     taskPublish[app] = {
                                         stage(app){
-                                            FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
-                                            DEFAULT_FRONTEND_SOLUTION_DIR = "${FRONTEND_WORKSPACE}/misa.mimosa.ui"
-                                            
                                             stage('npm build'){
                                                 dir(FRONTEND_WORKSPACE){
                                                     if(!existNpmPackgeGlobally('@vue/cli')){
