@@ -196,7 +196,7 @@ def call(){
                                                         def commands = [
                                                             'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university_api:latest',
                                                             'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversityAPI --force',
-                                                            'docker run -d --name RoomBookingUniversityAPI --network=roombookinguniversityapi_my_network_custom -p 8888:80 nmquang21/room_booking_university_api:latest'
+                                                            'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversityAPI --network=roombookinguniversityapi_my_network_custom -p 8888:80 nmquang21/room_booking_university_api:latest'
                                                         ]
                                                         commands.each{i ->
                                                             runCmd(i)
