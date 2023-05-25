@@ -5,8 +5,8 @@ def call(){
     BACKEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBooking.git'
     FRONTEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBookingUniversityUI.git'
 
-    BACKEND_WORKSPACE = ''
-    FRONTEND_WORKSPACE = ''
+    BACKEND_WORKSPACE = 'BACKEND'
+    FRONTEND_WORKSPACE = 'FRONTEND'
 
     DOTNET_BASEIMAGE = 'aspnet:6.0.9'
     VUE_BASEIMAGE = 'nginx:1.23.1-alpine'
@@ -59,7 +59,7 @@ def call(){
                                 if(app == 'APP/FRONTEND'){
                                     getSourceTasks[app] = {
                                         echo pwd()
-                                        dir(BACKEND_WORKSPACE){
+                                        dir(FRONTEND_WORKSPACE){
                                             script{
                                                 checkout(
                                                     [
@@ -81,7 +81,7 @@ def call(){
                                 if(app == 'APP/BACKEND'){
                                     getSourceTasks['FrontEnd'] = {
                                         echo pwd()
-                                        dir(FRONTEND_WORKSPACE){
+                                        dir(BACKEND_WORKSPACE){
                                             script{
                                                 checkout(
                                                     [
