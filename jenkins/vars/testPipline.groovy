@@ -141,12 +141,10 @@ def call(){
                                             }
                                             stage('push image to DockerHub') {
                                                 dir(FRONTEND_WORKSPACE){
-                                                    steps {
-                                                        withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
-                                                            runCmd('docker push nmquang21/room_booking_university:latest')
-                                                        }
-                                                        runCmd('docker rmi nmquang21/room_booking_university:latest')
+                                                    withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
+                                                        runCmd('docker push nmquang21/room_booking_university:latest')
                                                     }
+                                                    runCmd('docker rmi nmquang21/room_booking_university:latest')
                                                 }
                                             }
                                             stage('Build FRONTEND') {
