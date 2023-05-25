@@ -23,15 +23,15 @@ def call(){
                 label 'slave-node-01'
             }
         }
-        options{
-            disableConcurentBuilds()
+        //options{
+          //  disableConcurentBuilds()
             //buildDiscarder()
-        }
+       // }
         parameters{
             extendedChoice( 
                 name: 'APP_BUILD', 
                 defaultValue: 'app/ui,app/api', 
-                multiSelect Delimiter: STRING_DELIMITER, 
+                multiSelectDelimiter: STRING_DELIMITER, 
                 quoteValue: false,
                 saveJSONParameterToFile: false,
                 type: 'PT_CHECKBOX', 
