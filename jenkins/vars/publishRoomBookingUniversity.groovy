@@ -17,7 +17,7 @@ def call(){
         stages {
             stage('Clone code') {
                 steps {
-                    git credentialsId: '1fd902f5-1ee3-4b89-b907-834346b62625', url: 'https://github.com/nmquang21/RoomBookingUniversityUI.git'
+                    git credentialsId: '1fd902f5-1ee3-4b89-b907-834346b62625', url: 'https://github.com/PhamTam2k1/RoomBookingUniversityUI.git'
                 }
             }
             stage('Build Image') {
