@@ -115,6 +115,9 @@ def call(){
                                 if(app == 'APP/FRONTEND'){
                                     taskPublish[app] = {
                                         stage(app){
+                                            FRONTEND_WORKSPACE = pwd()+ '/BOOKING'
+                                            DEFAULT_FRONTEND_SOLUTION_DIR = "${FRONTEND_WORKSPACE}/misa.mimosa.ui"
+                                            
                                             stage('npm build'){
                                                 dir(FRONTEND_WORKSPACE){
                                                     if(!existNpmPackgeGlobally('@vue/cli')){
@@ -131,26 +134,30 @@ def call(){
                                                 }
                                             }
                                             stage('build image'){
-                                                echo 'build image'
-                                                // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
-                                                //     def commands = [
-                                                //             // cmd docker    
-                                                //     ]
-                                                //     commands.each{i ->
-                                                //         runCmd(i)
-                                                //     }
-                                                // }
+                                                dir(FRONTEND_WORKSPACE){
+                                                    rumCmd('docker build -t nmquang21/room_booking_university:${VERSION} .')
+                                            
+                                                }
                                             }
-                                            // ...
+                                            stage('push image to DockerHub') {
+                                                dir(FRONTEND_WORKSPACE){
+                                                    steps {
+                                                        withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
+                                                            rumCmd('docker push nmquang21/room_booking_university:${VERSION}')
+                                                        }
+                                                        rumCmd('docker rmi nmquang21/room_booking_university:${VERSION}')
+                                                    }
+                                                }
+                                            }
                                             stage('cleanup'){
                                                 echo 'cleanup'
-                                                // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
-                                                //     if(isUnix()){
-                                                //         sh 'rm -rf ./dist'
-                                                //     }else{
-                                                //         bat '''rd /s /q "./dist"'''
-                                                //     }
-                                                // }
+                                                dir(FRONTEND_WORKSPACE){
+                                                    if(isUnix()){
+                                                        sh 'rm -rf ./dist'
+                                                    }else{
+                                                        bat '''rd /s /q "./dist"'''
+                                                    }
+                                                }
                                             }
                                         }
                                     }
