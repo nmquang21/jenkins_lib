@@ -175,6 +175,7 @@ def call(){
                                     }
                                 }
                             }
+                            parallel taskPublish
                         }
                     }
                 }
