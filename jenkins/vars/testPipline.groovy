@@ -121,7 +121,7 @@ def call(){
                                             stage('npm build'){
                                                 dir(FRONTEND_WORKSPACE){
                                                     if(!existNpmPackgeGlobally('@vue/cli')){
-                                                        rumCmd('npm i -g @vue/cli')
+                                                        runCmd('npm i -g @vue/cli')
                                                     }
                                                     def commands = [
                                                         'node -v',
