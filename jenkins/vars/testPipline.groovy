@@ -31,7 +31,7 @@ def call(){
             extendedChoice( 
                 name: 'APP_BUILD', 
                 defaultValue: 'app/ui,app/api', 
-                mutiSelectDelimiter: STRING_DELIMITER, 
+                multiSelect Delimiter: STRING_DELIMITER, 
                 quoteValue: false,
                 saveJSONParameterToFile: false,
                 type: 'PT_CHECKBOX', 
