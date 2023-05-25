@@ -4,7 +4,7 @@ def call(){
     STRING_DELIMITER = ','
     BACKEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBooking.git'
     FRONTEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBookingUniversityUI.git'
-
+    VERSION = 'lasted'
     BACKEND_WORKSPACE = 'BACKEND'
     FRONTEND_WORKSPACE = 'FRONTEND'
 
