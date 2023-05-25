@@ -2,10 +2,8 @@
 
 def call(){
     STRING_DELIMITER = ','
-    BACKEND_GIT_URL = 'https://'
-    FRONTEND_GIT_URL = 'https://'
-    BACKEND_GIT_BRANCH = ''
-    FRONTEND_GIT_BRANCH = ''
+    BACKEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBooking.git'
+    FRONTEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBookingUniversityUI.git'
 
     BACKEND_WORKSPACE = ''
     FRONTEND_WORKSPACE = ''
@@ -37,6 +35,18 @@ def call(){
                 type: 'PT_CHECKBOX', 
                 description: 'Chon app build?', 
             )
+            string(
+                defaultValue: 'master',
+                name: 'FRONTEND_GIT_BRANCH',
+                trim: true,
+                description: 'Build Front End nhánh nào?',
+            )
+            string(
+                defaultValue: 'master',
+                name: 'BACKEND_GIT_BRANCH',
+                trim: true,
+                description: 'Build Back End nhánh nào?',
+            )
         }
         stages{
             stage('get lastet source'){
@@ -49,45 +59,45 @@ def call(){
                                 if(app == 'APP/FRONTEND'){
                                     getSourceTasks[app] = {
                                         echo pwd()
-                                    //     dir(BACKEND_WORKSPACE){
-                                    //         script{
-                                    //             checkout(
-                                    //                 [
-                                    //                 $class: 'GitSCM',
-                                    //                 branch: [[name: params.BACKEND_GIT_BRANCH]], 
-                                    //                 userRemoteConfigs:
-                                    //                     [
-                                    //                         [
-                                    //                             credentialsId: params.CREDENTIALS_ID,
-                                    //                             url: BACKEND_GIT_URL
-                                    //                         ]
-                                    //                     ] 
-                                    //                 ]
-                                    //             )
-                                    //         }
-                                    //     }
+                                        dir(BACKEND_WORKSPACE){
+                                            script{
+                                                checkout(
+                                                    [
+                                                    $class: 'GitSCM',
+                                                    branch: [[name: params.FRONTEND_GIT_BRANCH]], 
+                                                    userRemoteConfigs:
+                                                        [
+                                                            [
+                                                                credentialsId: '1fd902f5-1ee3-4b89-b907-834346b62625',
+                                                                url: FRONTEND_GIT_URL
+                                                            ]
+                                                        ] 
+                                                    ]
+                                                )
+                                            }
+                                        }
                                     }
                                 }
                                 if(app == 'APP/BACKEND'){
                                     getSourceTasks['FrontEnd'] = {
                                         echo pwd()
-                                    //     dir(FRONTEND_WORKSPACE){
-                                    //         script{
-                                    //             checkout(
-                                    //                 [
-                                    //                 $class: 'GitSCM',
-                                    //                 branch: [[name: params.FRONTEND_GIT_BRANCH]], 
-                                    //                 userRemoteConfigs:
-                                    //                     [
-                                    //                         [
-                                    //                             credentialsId: params.CREDENTIALS_ID,
-                                    //                             url: FRONTEND_GIT_URL
-                                    //                         ]
-                                    //                     ] 
-                                    //                 ]
-                                    //             )
-                                    //         }
-                                    //     }
+                                        dir(FRONTEND_WORKSPACE){
+                                            script{
+                                                checkout(
+                                                    [
+                                                    $class: 'GitSCM',
+                                                    branch: [[name: params.BACKEND_GIT_BRANCH]], 
+                                                    userRemoteConfigs:
+                                                        [
+                                                            [
+                                                                credentialsId: '1fd902f5-1ee3-4b89-b907-834346b62625',
+                                                                url: BACKEND_GIT_URL
+                                                            ]
+                                                        ] 
+                                                    ]
+                                                )
+                                            }
+                                        }
                                     }
                                 }
                             }
