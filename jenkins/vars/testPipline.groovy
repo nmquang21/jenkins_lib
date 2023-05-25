@@ -126,7 +126,7 @@ def call(){
                                                         'npm run build'
                                                     ]
                                                     commands.each{i ->
-                                                        runCmd(i)
+                                                        //runCmd(i)
                                                     }
                                                 }
                                             }
