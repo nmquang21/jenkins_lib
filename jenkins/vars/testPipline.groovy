@@ -132,6 +132,9 @@ def call(){
                                             }
                                             stage('build image'){
                                                 dir(FRONTEND_WORKSPACE){
+                                                    echo pwd()
+                                                    echo VERSION
+                                                    echo 'docker build -t nmquang21/room_booking_university:${VERSION} .'
                                                     runCmd('docker build -t nmquang21/room_booking_university:${VERSION} .')
                                             
                                                 }
@@ -147,15 +150,17 @@ def call(){
                                                 }
                                             }
                                             stage('Build FRONTEND') {
-                                                steps {
-                                                    sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
-                                                        def commands = [
-                                                            'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university:${VERSION}',
-                                                            'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversity --force',
-                                                            'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 80:80 nmquang21/room_booking_university:${VERSION}'
-                                                        ]
-                                                        commands.each{i ->
-                                                            runCmd(i)
+                                                dir(FRONTEND_WORKSPACE){
+                                                    steps {
+                                                        sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
+                                                            def commands = [
+                                                                'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/room_booking_university:${VERSION}',
+                                                                'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm RoomBookingUniversity --force',
+                                                                'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name RoomBookingUniversity -p 80:80 nmquang21/room_booking_university:${VERSION}'
+                                                            ]
+                                                            commands.each{i ->
+                                                                runCmd(i)
+                                                            }
                                                         }
                                                     }
                                                 }
