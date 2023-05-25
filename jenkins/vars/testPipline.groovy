@@ -30,7 +30,7 @@ def call(){
         parameters{
             extendedChoice( 
                 name: 'APP_BUILD', 
-                defaultValue: 'app/ui,app/api', 
+                value: 'app/ui,app/api', 
                 multiSelectDelimiter: STRING_DELIMITER, 
                 quoteValue: false,
                 saveJSONParameterToFile: false,
