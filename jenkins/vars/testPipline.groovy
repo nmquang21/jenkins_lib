@@ -132,7 +132,7 @@ def call(){
                                                 // }
                                             }
                                             stage('npm build'){
-                                                nodejs('NODEJS14'){
+                                                //nodejs('NODEJS14'){
                                                     echo 'npm build'
                                                     // dir(DEFAULT_FRONTEND_SOLUTION_DIR){
                                                     //     if(!existNpmPackgeGlobally('@vue/cli')){
@@ -147,7 +147,7 @@ def call(){
                                                     //         runCmd(i)
                                                     //     }
                                                     // }
-                                                }
+                                               // }
                                             }
                                             stage('build image'){
                                                 echo 'build image'
