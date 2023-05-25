@@ -24,9 +24,9 @@ def call(){
             }
         }
         //options{
-          //  disableConcurentBuilds()
+        //  disableConcurentBuilds()
             //buildDiscarder()
-       // }
+        // }
         parameters{
             extendedChoice( 
                 name: 'APP_BUILD', 
@@ -37,13 +37,6 @@ def call(){
                 type: 'PT_CHECKBOX', 
                 description: 'Chon app build?', 
             )
-            string(
-                defaultValue: 'mimosa_git',
-                name: 'CREDENTIALS_ID',
-                trim: true,
-                description: 'credetials de get code?',
-            )
-            
         }
         stages{
             stage('get lastet source'){
@@ -53,45 +46,50 @@ def call(){
                         selectedAppBuild = params.APP_BUILD.split(STRING_DELIMITER)
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
                             selectedAppBuild.each{app ->
-                                 getSourceTasks[app] = {
-                                //     dir(BACKEND_WORKSPACE){
-                                //         script{
-                                //             checkout(
-                                //                 [
-                                //                 $class: 'GitSCM',
-                                //                 branch: [[name: params.BACKEND_GIT_BRANCH]], 
-                                //                 userRemoteConfigs:
-                                //                     [
-                                //                         [
-                                //                             credentialsId: params.CREDENTIALS_ID,
-                                //                             url: BACKEND_GIT_URL
-                                //                         ]
-                                //                     ] 
-                                //                 ]
-                                //             )
-                                //         }
-                                //     }
-                                    echo app
-                                 }
-                                // getSourceTasks['FrontEnd'] = {
-                                //     dir(FRONTEND_WORKSPACE){
-                                //         script{
-                                //             checkout(
-                                //                 [
-                                //                 $class: 'GitSCM',
-                                //                 branch: [[name: params.FRONTEND_GIT_BRANCH]], 
-                                //                 userRemoteConfigs:
-                                //                     [
-                                //                         [
-                                //                             credentialsId: params.CREDENTIALS_ID,
-                                //                             url: FRONTEND_GIT_URL
-                                //                         ]
-                                //                     ] 
-                                //                 ]
-                                //             )
-                                //         }
-                                //     }
-                                // }
+                                if(app == 'APP/FRONTEND'){
+                                    getSourceTasks[app] = {
+                                        echo pwd()
+                                    //     dir(BACKEND_WORKSPACE){
+                                    //         script{
+                                    //             checkout(
+                                    //                 [
+                                    //                 $class: 'GitSCM',
+                                    //                 branch: [[name: params.BACKEND_GIT_BRANCH]], 
+                                    //                 userRemoteConfigs:
+                                    //                     [
+                                    //                         [
+                                    //                             credentialsId: params.CREDENTIALS_ID,
+                                    //                             url: BACKEND_GIT_URL
+                                    //                         ]
+                                    //                     ] 
+                                    //                 ]
+                                    //             )
+                                    //         }
+                                    //     }
+                                    }
+                                }
+                                if(app == 'APP/BACKEND'){
+                                    getSourceTasks['FrontEnd'] = {
+                                        echo pwd()
+                                    //     dir(FRONTEND_WORKSPACE){
+                                    //         script{
+                                    //             checkout(
+                                    //                 [
+                                    //                 $class: 'GitSCM',
+                                    //                 branch: [[name: params.FRONTEND_GIT_BRANCH]], 
+                                    //                 userRemoteConfigs:
+                                    //                     [
+                                    //                         [
+                                    //                             credentialsId: params.CREDENTIALS_ID,
+                                    //                             url: FRONTEND_GIT_URL
+                                    //                         ]
+                                    //                     ] 
+                                    //                 ]
+                                    //             )
+                                    //         }
+                                    //     }
+                                    }
+                                }
                             }
                         }
                         parallel getSourceTasks
