@@ -134,7 +134,7 @@ def call(){
                                                 dir(FRONTEND_WORKSPACE){
                                                     echo pwd()
                                                     echo VERSION
-                                                    echo 'docker build -t nmquang21/room_booking_university:${DOTNET_BASEIMAGE} .'
+                                                    echo 'docker build -t nmquang21/room_booking_university:latest .'
                                                     runCmd('docker build -t nmquang21/room_booking_university:$VERSION .')
                                             
                                                 }
