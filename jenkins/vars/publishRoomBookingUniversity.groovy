@@ -29,7 +29,7 @@ def call(){
         }
         post{
             success {
-                sentMail(false)
+                sentMail(true)
             }
             failure {
                 sentMail(false)
