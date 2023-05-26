@@ -23,7 +23,7 @@ def call(boolean status){
         emailext body : emailBody,
         subject : "Thông bảo bản build utc-room.online",
         mimeType : "text/html",
-        to : "nmquang21@gmail.com,nmquang021@gmail.com"
+        to : "nmquang21@gmail.com,buiquangdiep@gmail.com,phamtamhg01@gmail.com,tampham2kk1@gmail.com"
     }catch(ex){
         res = false
         echo ex.toString()
