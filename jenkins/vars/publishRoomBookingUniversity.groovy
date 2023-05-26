@@ -29,7 +29,7 @@ def call(){
         }
         post{
             always{
-                mail bcc: '', body: 'build thành công', cc: 'nguyenminhquang_t62@hus.edu.vn', from: '', replyTo: '', subject: 'Thông báo bản build utc-room.online', to: 'nmquang21@gmail.com'
+                mail bcc: '', body: 'build thành công', cc: '', from: '', replyTo: '', subject: 'Thông báo bản build utc-room.online', to: 'nmquang21@gmail.com,nguyenminhquang_t62@hus.edu.vn'
             }
         }
     }
