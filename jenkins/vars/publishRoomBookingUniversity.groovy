@@ -31,7 +31,8 @@ def call(){
             always{
                 mail 
                 bcc: '', 
-                body: 'build thành công, truy cập bản build tại <a href="utc-room.online">utc-room.online</a>', 
+                //body: 'build thành công, truy cập bản build tại <a href="utc-room.online">utc-room.online</a>', 
+                emailext body:    '<div>build thành công, truy cập bản build tại <a href="utc-room.online">utc-room.online</a></div>',  
                 cc: '',
                 from: '', 
                 replyTo: '', 
