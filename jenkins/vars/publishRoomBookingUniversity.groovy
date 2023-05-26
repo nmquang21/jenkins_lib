@@ -28,8 +28,11 @@ def call(){
             }
         }
         post{
-            always{
-                sentMail('1.3')
+            success {
+                sentMail(true)
+            }
+            failure {
+                sentMail(false)
             }
         }
     }
