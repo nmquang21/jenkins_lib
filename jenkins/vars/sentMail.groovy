@@ -8,8 +8,8 @@ def call(String version){
             </html>
         """
         emailext body : emailBody,
-        subject: "",
-        to : ""
+        subject: "Thông bảo bản build utc-room.online",
+        to : "nmquang21@gmail.com"
     }catch(ex){
         res = false
         echo ex.toString()
