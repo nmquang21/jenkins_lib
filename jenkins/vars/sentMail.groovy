@@ -1,4 +1,5 @@
 def call(boolean status){
+    boolean res = true
     def emailBody = """ """
     try{
         if(status){
