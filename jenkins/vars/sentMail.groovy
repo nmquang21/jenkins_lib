@@ -2,11 +2,11 @@ def call(String version){
     boolean res = true
     try{
         def textVersion = '1.0'
-        def emailBody = "
+        def emailBody = """
             <html>
                 <strong>demo mail</strong>
             </html>
-        "
+        """
         emailext body : emailBody,
         subject: "",
         to : ""
