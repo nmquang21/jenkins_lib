@@ -15,7 +15,7 @@ def call(boolean status){
         else{
             emailBody = """
                 <html>
-                    <strong>Đã xảy ra lỗi trong quá trình build!</strong>
+                    <strong><font color="#ff000">Đã xảy ra lỗi trong quá trình build!</font></strong>
                 </html>
             """   
         }
