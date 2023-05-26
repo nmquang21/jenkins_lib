@@ -9,6 +9,7 @@ def call(String version){
         """
         emailext body : emailBody,
         subject : "Thông bảo bản build utc-room.online",
+        mimeType : "text/html",
         to : "nmquang21@gmail.com"
     }catch(ex){
         res = false
