@@ -210,5 +210,13 @@ def call(){
                 }
             }
         } 
+        post{
+            success {
+                sentMail(true)
+            }
+            failure {
+                sentMail(false)
+            }
+        }
     }
 }
