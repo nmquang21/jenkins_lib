@@ -13,9 +13,10 @@ def call(){
 
     pipeline{
         agent{
-            node{
-                label 'ssh-agent-node-01'
-            }
+            any
+            //node{
+              //  label 'ssh-agent-node-01'
+            //}
         }
         //options{
         //  disableConcurentBuilds()
