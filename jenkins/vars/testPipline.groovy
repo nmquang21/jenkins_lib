@@ -12,12 +12,13 @@ def call(){
     PROJS['app/ui'] = 'MISA.UI'
 
     pipeline{
-        agent{
-            any
+        agent any
+        //agent{
+           // any
             //node{
               //  label 'ssh-agent-node-01'
             //}
-        }
+        //}
         //options{
         //  disableConcurentBuilds()
             //buildDiscarder()
