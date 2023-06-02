@@ -5,8 +5,8 @@ def call(){
    // BACKEND_GIT_URL = 'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
    // FRONTEND_GIT_URL =  'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
     VERSION = 'latest'
-    BACKEND_WORKSPACE = 'BACKEND'
-    FRONTEND_WORKSPACE = 'FRONTEND'
+    BACKEND_WORKSPACE = 'VCDOAN/BACKEND'
+    FRONTEND_WORKSPACE = 'VCDOAN/FRONTEND'
     PROJS = [:]
     PROJS['app/api'] = 'MISA.API'
     PROJS['app/ui'] = 'MISA.UI'
