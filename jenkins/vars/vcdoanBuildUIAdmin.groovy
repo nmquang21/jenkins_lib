@@ -34,7 +34,7 @@ def call(){
                 description: 'Chọn App muốn build?', 
             )
             string(
-                defaultValue: 'main',
+                defaultValue: 'master',
                 name: 'FRONTEND_GIT_BRANCH',
                 trim: true,
                 description: 'Build FrontEnd nhánh nào?',
