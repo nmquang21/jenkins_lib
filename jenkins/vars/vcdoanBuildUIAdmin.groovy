@@ -57,6 +57,7 @@ def call(){
                                 if(app == 'APP/FRONTEND'){
                                     getSourceTasks[app] = {
                                         dir(FRONTEND_WORKSPACE){
+                                            echo 'VCDOAN'
                                             script{
                                                 checkout(
                                                     [
