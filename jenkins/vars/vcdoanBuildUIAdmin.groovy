@@ -3,7 +3,7 @@
 def call(){
     STRING_DELIMITER = ','
    // BACKEND_GIT_URL = 'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
-   // FRONTEND_GIT_URL =  'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
+    FRONTEND_GIT_URL =  'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
     VERSION = 'latest'
     BACKEND_WORKSPACE = 'VCDOAN/BACKEND'
     FRONTEND_WORKSPACE = 'VCDOAN/FRONTEND'
