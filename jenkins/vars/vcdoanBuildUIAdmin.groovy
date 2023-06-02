@@ -2,8 +2,8 @@
 
 def call(){
     STRING_DELIMITER = ','
-    BACKEND_GIT_URL = 'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
-   // FRONTEND_GIT_URL = 'https://github.com/PhamTam2k1/RoomBookingUniversityUI.git'
+   // BACKEND_GIT_URL = 'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
+   // FRONTEND_GIT_URL =  'https://github.com/vucongdoan306/vite-soft-ui-dashboard.git'
     VERSION = 'latest'
     BACKEND_WORKSPACE = 'BACKEND'
     FRONTEND_WORKSPACE = 'FRONTEND'
