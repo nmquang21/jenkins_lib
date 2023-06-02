@@ -129,30 +129,10 @@ def call(){
                                                     }
                                                 }
                                             }
-                                            stage('build image frontend'){
+                                            stage('build  frontend'){
                                                 dir(FRONTEND_WORKSPACE){
-                                                    echo 'docker build -t nmquang21/cinema_ui_das:latest .'
-                                                    runCmd('docker build -t nmquang21/cinema_ui_das:latest .')
-                                            
-                                                }
-                                            }
-                                            // stage('push image frontend to DockerHub') {
-                                            //     dir(FRONTEND_WORKSPACE){
-                                            //         withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
-                                            //             runCmd('docker push nmquang21/cinema_ui_das:latest')
-                                            //         }
-                                            //         runCmd('docker rmi nmquang21/cinema_ui_das:latest')
-                                            //     }
-                                            // }
-                                            stage('build frontend') {
-                                                dir(FRONTEND_WORKSPACE){
-                                                    sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
-                                                        // def commands = [
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/cinema_ui_das:latest',
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm CinemaUIDas --force',
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name CinemaUIDas -p 8089:88 nmquang21/cinema_ui_das:latest'
-                                                        // ]
                                                         def commands = [
+                                                            'docker build -t nmquang21/cinema_ui_das:latest .',
                                                             'docker rm CinemaUIDas --force',
                                                             'docker run -d --name CinemaUIDas -p 8089:88 nmquang21/cinema_ui_das:latest',
                                                             'docker rmi nmquang21/cinema_ui_das:latest'
@@ -160,9 +140,9 @@ def call(){
                                                         commands.each{i ->
                                                             runCmd(i)
                                                         }
-                                                    }
                                                 }
                                             }
+                                            
                                             stage('cleanup frontend'){
                                                 echo 'cleanup'
                                                 dir(FRONTEND_WORKSPACE){
@@ -182,27 +162,9 @@ def call(){
                                             stage('build image backend'){
                                                 dir(BACKEND_WORKSPACE){
                                                     echo pwd()
-                                                    runCmd('docker build -t nmquang21/cinema_api:latest .')
-                                            
-                                                }
-                                            }
-                                            // stage('push image backend to DockerHub') {
-                                            //     dir(BACKEND_WORKSPACE){
-                                            //         withDockerRegistry(credentialsId: 'docker_hub', url: 'https://index.docker.io/v1/') {
-                                            //             runCmd('docker push nmquang21/cinema_api:latest')
-                                            //         }
-                                            //         runCmd('docker rmi nmquang21/cinema_api:latest')
-                                            //     }
-                                            // }
-                                            stage('build backend') {
-                                                dir(BACKEND_WORKSPACE){
-                                                    sshagent(credentials:['b1fd8109-9b99-4fd2-8db7-5a898625b64e']) {
-                                                        // def commands = [
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker pull nmquang21/cinema_api:latest',
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker rm CinemaAPI --force',
-                                                        //     'ssh -o StrictHostKeyChecking=no -l root 34.96.176.17 docker run -d --name CinemaAPI --network=vcdoan_my_network_vcdoan -p 8889:80 nmquang21/cinema_api:latest'
-                                                        // ]
+                                                    runCmd()
                                                         def commands = [
+                                                            'docker build -t nmquang21/cinema_api:latest .',
                                                             'docker rm CinemaAPI --force',
                                                             'docker run -d --name CinemaAPI --network=vcdoan_my_network_vcdoan -p 8889:80 nmquang21/cinema_api:latest',
                                                             'docker rmi nmquang21/cinema_api:latest'
@@ -210,7 +172,6 @@ def call(){
                                                         commands.each{i ->
                                                             runCmd(i)
                                                         }
-                                                    }
                                                 }
                                             }
                                         }
