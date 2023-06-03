@@ -134,7 +134,7 @@ def call(){
                                                         def commands = [
                                                             'docker build -t nmquang21/cinema_ui_das:latest .',
                                                             'docker rm CinemaUIDas --force',
-                                                            'docker run -d --name CinemaUIDas -p 8089:88 nmquang21/cinema_ui_das:latest',
+                                                            'docker run -d --name CinemaUIDas -p 80:88 nmquang21/cinema_ui_das:latest',
                                                             'docker rmi nmquang21/cinema_ui_das:latest'
                                                         ]
                                                         commands.each{i ->
@@ -166,7 +166,7 @@ def call(){
                                                         def commands = [
                                                             'docker build -t nmquang21/cinema_api:latest .',
                                                             'docker rm CinemaAPI --force',
-                                                            'docker run -d --name CinemaAPI --network=vcdoan_my_network_vcdoan -p 8889:80 nmquang21/cinema_api:latest',
+                                                            'docker run -d --name CinemaAPI --network=mysql_my_network_vcdoan -p 8889:80 nmquang21/cinema_api:latest',
                                                             'docker rmi nmquang21/cinema_api:latest'
                                                         ]
                                                         commands.each{i ->
