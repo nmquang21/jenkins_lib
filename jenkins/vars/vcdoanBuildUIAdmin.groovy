@@ -120,6 +120,7 @@ def call(){
                                                         //runCmd('npm i -g @vue/cli')
                                                     }
                                                     def commands = [
+                                                        'whoami'
                                                         'node -v',
                                                         'npm i',
                                                         'npm run build'
