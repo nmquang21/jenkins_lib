@@ -55,6 +55,7 @@ def call(){
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
                             selectedAppBuild.each{app ->
                                 if(app == 'APP/FRONTEND'){
+                                    echo 'get code FRONTEND'
                                     getSourceTasks[app] = {
                                         dir(FRONTEND_WORKSPACE){
                                             script{
@@ -76,6 +77,7 @@ def call(){
                                     }
                                 }
                                 if(app == 'APP/BACKEND'){
+                                     echo 'get code BACKEND'
                                     getSourceTasks['FrontEnd'] = {
                                         echo pwd()
                                         dir(BACKEND_WORKSPACE){
