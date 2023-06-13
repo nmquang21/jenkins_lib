@@ -50,7 +50,6 @@ def call(){
             stage('get lastet source'){
                 steps{
                     script{
-                        echo  params.FRONTEND_GIT_BRANCH
                         getSourceTasks = [:]
                         selectedAppBuild = params.APP_BUILD.split(STRING_DELIMITER)
                         if(params.APP_BUILD != '' && params.APP_BUILD != STRING_DELIMITER && selectedAppBuild.size() > 0){
