@@ -120,7 +120,6 @@ def call(){
                                                    def commands = [
                                                         'sudo su',
                                                         'node -v',
-                                                        'npm i',
                                                         'npm run build'
                                                     ]
                                                     nodejs('NODE_V18'){
