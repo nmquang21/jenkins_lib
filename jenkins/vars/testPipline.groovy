@@ -117,13 +117,10 @@ def call(){
                                         stage(app){
                                             stage('npm build'){
                                                 dir(FRONTEND_WORKSPACE){
-                                                    if(!existNpmPackgeGlobally('@vue/cli')){
-                                                        //runCmd('npm i -g @vue/cli')
-                                                    }
-                                                    def commands = [
+                                                   def commands = [
                                                         'sudo su',
                                                         'node -v',
-                                                        // 'npm i',
+                                                        'npm i',
                                                         'npm run build'
                                                     ]
                                                     nodejs('NODE_V18'){
