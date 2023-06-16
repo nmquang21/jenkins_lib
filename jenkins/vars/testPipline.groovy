@@ -12,13 +12,13 @@ def call(){
     PROJS['app/ui'] = 'MISA.UI'
 
     pipeline{
-        agent any
-       //agent{
+        //agent any
+       agent{
            // any
-            //node{
-               // label 'ssh-agent-node-01'
-           // }
-        //}
+            node{
+                label 'ssh-agent-node-01'
+            }
+        }
         //options{
         //  disableConcurentBuilds()
             //buildDiscarder()
@@ -117,15 +117,16 @@ def call(){
                                         stage(app){
                                             stage('npm build'){
                                                 dir(FRONTEND_WORKSPACE){
-                                                   def commands = [
-                                                        'sudo su',
+                                                    if(!existNpmPackgeGlobally('@vue/cli')){
+                                                        //runCmd('npm i -g @vue/cli')
+                                                    }
+                                                    def commands = [
                                                         'node -v',
+                                                        // 'npm i',
                                                         'npm run build'
                                                     ]
-                                                    nodejs('NODE_V18'){
-                                                        commands.each{i ->
-                                                            runCmd(i)
-                                                        }
+                                                    commands.each{i ->
+                                                        runCmd(i)
                                                     }
                                                 }
                                             }
