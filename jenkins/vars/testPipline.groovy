@@ -125,8 +125,10 @@ def call(){
                                                         // 'npm i',
                                                         'npm run build'
                                                     ]
-                                                    commands.each{i ->
-                                                        runCmd(i)
+                                                    nodejs('NODE_V18'){
+                                                        commands.each{i ->
+                                                            runCmd(i)
+                                                        }
                                                     }
                                                 }
                                             }
